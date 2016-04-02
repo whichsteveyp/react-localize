@@ -1,0 +1,25 @@
+{
+  "name": "react-localize",
+  "version": "1.0.0-init",
+  "description": "A simple context wrapper and text localization component for localizing strings",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sprjr/react-localize.git"
+  },
+  "keywords": [
+    "react",
+    "localize",
+    "localization",
+    "text",
+    "utilities"
+  ],
+  "author": "Stephen Rivas Jr",
+  "license": "ISC",
+  "dependencies": {
+    "react": "0.14.8"
+  }
+}
