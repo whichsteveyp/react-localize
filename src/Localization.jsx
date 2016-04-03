@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import util from 'util';
 const { func, objectOf, string } = PropTypes;
 
 const Localization = React.createClass({
@@ -23,10 +24,12 @@ const Localization = React.createClass({
   },
 
   localize(key, ...values) {
-    console.log(this.props, key);
+    let string = this.props.messageBundle[key];
 
-    // TODO: Implement proper bundle/key lookup & formatting
-    const string = this.props.messageBundle[key];
+    if (values && string) {
+      string = util.format(string, ...values);
+    }
+
     return string || key;
   },
 

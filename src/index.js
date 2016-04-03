@@ -1,5 +1,5 @@
 import Localization from './Localization';
-import { default as Text, default as t } from './Text';
+import { default as Text } from './Text';
 
 export default Localization;
-export { Text, t };
+export { Text };

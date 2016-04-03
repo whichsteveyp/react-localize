@@ -13,19 +13,24 @@
  */
 
 import React, { PropTypes } from 'react';
-const { string, func } = PropTypes;
+const { array, func, string } = PropTypes;
 
 const Text = (props, context) => {
-  const { message, ...rest } = props;
+  const { message, values, ...rest } = props;
   const { localize } = context;
 
-  return (<span {...rest}>{localize(message)}</span>);
+  return (<span {...rest}>{localize(message, ...values)}</span>);
 };
 
 Text.displayName = 'Text';
 
 Text.propTypes = {
-  message: string.isRequired
+  message: string.isRequired,
+  values: array
+};
+
+Text.defaultProps = {
+  values: []
 };
 
 Text.contextTypes = {
