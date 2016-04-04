@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _get = require('lodash/get');
+
+var _get2 = _interopRequireDefault(_get);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -23,12 +27,12 @@ var Localization = _react2.default.createClass({
   displayName: 'Localization',
 
   propTypes: {
-    messageBundle: objectOf(string).isRequired
+    messages: objectOf(string).isRequired
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      messageBundle: {}
+      messages: {}
     };
   },
 
@@ -43,7 +47,9 @@ var Localization = _react2.default.createClass({
     };
   },
   localize: function localize(key) {
-    var string = this.props.messageBundle[key];
+    var messages = this.props.messages;
+
+    var string = (0, _get2.default)(messages, key, key);
 
     for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       values[_key - 1] = arguments[_key];
@@ -53,7 +59,7 @@ var Localization = _react2.default.createClass({
       string = _util2.default.format.apply(_util2.default, [string].concat(values));
     }
 
-    return string || key;
+    return string;
   },
   render: function render() {
     return this.props.children;

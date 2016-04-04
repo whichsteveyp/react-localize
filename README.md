@@ -9,13 +9,15 @@ A simple context wrapper and text localization component for localizing strings.
 ```
 import Localization, { Text } from 'react-localize';
 
-<Localization messageBundle={{
+<Localization messages={{
   'app.button.Submit': 'Submit',
-  'foo.bar': 'Hey %s, you must be %d old?'
+  foo: {
+    bar: 'Hey %s, you must be %d old?'
+  }
 }}>
   <AnyParent>
     <Text message="prop.Val" style={{ color: 'blue' }} />
-    <Text message="app.button.Submit" />
+    <Text message="app.button.Submit" data-magic="pretty neat" />
     <Text message="foo.bar" values={['Foophen', 32]} style={{ color: 'red' }} />
   </AnyParent>
 </Localization>
@@ -24,7 +26,7 @@ import Localization, { Text } from 'react-localize';
 ## You can expect the above to output: (respectively)
 ```
 <span style="color: blue">prop.Val</span>
-<span>Submit</span>
+<span data-magic="pretty neat">Submit</span>
 <span style="color: red">Hey Foophen, you must be 32 old?</span>
 ```
 

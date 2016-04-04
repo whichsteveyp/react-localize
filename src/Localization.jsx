@@ -1,15 +1,16 @@
+import get from 'lodash/get';
 import React, { PropTypes } from 'react';
 import util from 'util';
 const { func, objectOf, string } = PropTypes;
 
 const Localization = React.createClass({
   propTypes: {
-    messageBundle: objectOf(string).isRequired
+    messages: objectOf(string).isRequired
   },
 
   getDefaultProps() {
     return {
-      messageBundle: {}
+      messages: {}
     };
   },
 
@@ -24,13 +25,14 @@ const Localization = React.createClass({
   },
 
   localize(key, ...values) {
-    let string = this.props.messageBundle[key];
+    const { messages } = this.props;
+    let string = get(messages, key, key);
 
     if (values && string) {
       string = util.format(string, ...values);
     }
 
-    return string || key;
+    return string;
   },
 
   render() {
