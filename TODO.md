@@ -5,3 +5,4 @@
 - Tests. (because then we'll know if we break something)
 - better usage documentation
 - Fix up lint / style and update githooks
+- Add custom retrieval hook for `<Localization />` for folks who want to deviate from the current data model pattern.
