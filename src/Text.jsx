@@ -16,15 +16,27 @@ import React, { PropTypes } from 'react';
 const { array, func, string } = PropTypes;
 
 const Text = (props, context) => {
-  const { message, values, ...rest } = props;
+  const { message, children, values, ...rest } = props;
   const { localize } = context;
 
-  return (<span {...rest}>{localize(message, ...values)}</span>);
+  let localized = message;
+
+  if (typeof localize === 'function') {
+    localized = localize(message, ...values);
+  }
+
+  // allow for optional alternative API using render-prop pattern
+  if (typeof children === 'function') {
+    return children(localized, message, ...values);
+  } else {
+    return (<span {...rest}>{localized}</span>);
+  }
 };
 
 Text.displayName = 'Text';
 
 Text.propTypes = {
+  children: func,
   message: string.isRequired,
   values: array
 };

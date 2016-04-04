@@ -21,23 +21,35 @@ var string = _react.PropTypes.string;
 
 var Text = function Text(props, context) {
   var message = props.message;
+  var children = props.children;
   var values = props.values;
 
-  var rest = _objectWithoutProperties(props, ['message', 'values']);
+  var rest = _objectWithoutProperties(props, ['message', 'children', 'values']);
 
   var localize = context.localize;
 
 
-  return _react2.default.createElement(
-    'span',
-    rest,
-    localize.apply(undefined, [message].concat(_toConsumableArray(values)))
-  );
+  var localized = message;
+
+  if (typeof localize === 'function') {
+    localized = localize.apply(undefined, [message].concat(_toConsumableArray(values)));
+  }
+
+  if (typeof children === 'function') {
+    return children.apply(undefined, [localized, message].concat(_toConsumableArray(values)));
+  } else {
+    return _react2.default.createElement(
+      'span',
+      rest,
+      localized
+    );
+  }
 };
 
 Text.displayName = 'Text';
 
 Text.propTypes = {
+  children: func,
   message: string.isRequired,
   values: array
 };
