@@ -27,12 +27,26 @@ var Localization = _react2.default.createClass({
   displayName: 'Localization',
 
   propTypes: {
-    messages: objectOf(string).isRequired
+    messages: objectOf(string).isRequired,
+    localize: func
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      messages: {}
+      messages: {},
+      localize: function localize(messages, key) {
+        var string = (0, _get2.default)(messages, key, key);
+
+        for (var _len = arguments.length, values = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+          values[_key - 2] = arguments[_key];
+        }
+
+        if (values && string) {
+          string = _util2.default.format.apply(_util2.default, [string].concat(values));
+        }
+
+        return string;
+      }
     };
   },
 
@@ -47,19 +61,15 @@ var Localization = _react2.default.createClass({
     };
   },
   localize: function localize(key) {
-    var messages = this.props.messages;
+    var _props = this.props;
+    var messages = _props.messages;
+    var localize = _props.localize;
 
-    var string = (0, _get2.default)(messages, key, key);
-
-    for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      values[_key - 1] = arguments[_key];
+    for (var _len2 = arguments.length, values = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+      values[_key2 - 1] = arguments[_key2];
     }
 
-    if (values && string) {
-      string = _util2.default.format.apply(_util2.default, [string].concat(values));
-    }
-
-    return string;
+    localize.apply(undefined, [messages, key].concat(values));
   },
   render: function render() {
     return this.props.children;
