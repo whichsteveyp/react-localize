@@ -42,4 +42,5 @@ exports.default = function (ComposedComponent) {
   ConnectLocalization.contextTypes = {
     localize: _react.PropTypes.func
   };
+  return ConnectLocalization;
 };

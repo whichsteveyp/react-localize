@@ -14,4 +14,5 @@ export default (ComposedComponent) => {
   ConnectLocalization.contextTypes = {
     localize: PropTypes.func
   };
+  return ConnectLocalization;
 }

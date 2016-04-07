@@ -27,4 +27,4 @@ export default (ComposedComponent, messages = {}, customLocalizer) => {
     localize: PropTypes.func
   };
   return ConfigureLocalization;
-};
+}
