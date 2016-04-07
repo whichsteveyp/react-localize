@@ -4,17 +4,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _get = require('lodash/get');
-
-var _get2 = _interopRequireDefault(_get);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _util = require('util');
+var _localizeFormatter = require('./util/localize-formatter');
 
-var _util2 = _interopRequireDefault(_util);
+var _localizeFormatter2 = _interopRequireDefault(_localizeFormatter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,12 +23,14 @@ var Localization = _react2.default.createClass({
   displayName: 'Localization',
 
   propTypes: {
-    messages: objectOf(string).isRequired
+    messages: objectOf(string).isRequired,
+    localize: func
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      messages: {}
+      messages: {},
+      localize: _localizeFormatter2.default
     };
   },
 
@@ -46,20 +44,12 @@ var Localization = _react2.default.createClass({
       localize: this.localize
     };
   },
-  localize: function localize(key) {
-    var messages = this.props.messages;
+  localize: function localize(key, values, defaultValue) {
+    var _props = this.props;
+    var messages = _props.messages;
+    var localize = _props.localize;
 
-    var string = (0, _get2.default)(messages, key, key);
-
-    for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      values[_key - 1] = arguments[_key];
-    }
-
-    if (values && string) {
-      string = _util2.default.format.apply(_util2.default, [string].concat(values));
-    }
-
-    return string;
+    return localize(messages, key, values, defaultValue);
   },
   render: function render() {
     return this.props.children;
