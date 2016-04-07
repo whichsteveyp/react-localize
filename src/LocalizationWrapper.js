@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import defaultLocalizer from './util/localize-formatter';
 
-export default (ComposedComponent, messages, customLocalizer) => {
+export default (ComposedComponent, messages = {}, customLocalizer) => {
   class ConfigureLocalization extends Component {
     constructor(props) {
       super(props);
@@ -11,11 +11,11 @@ export default (ComposedComponent, messages, customLocalizer) => {
         localize: this.localize
       };
     }
-    localize(key, values) {
+    localize(key, values, defaultValue) {
       if(typeof customLocalizer === 'function') {
-        return customLocalizer(messages || {}, key, values);
+        return customLocalizer(messages, key, values, defaultValue);
       }
-      return defaultLocalizer(messages || {}, key, values);
+      return defaultLocalizer(messages, key, values, defaultValue);
     }
     render() {
       return <ComposedComponent {...this.props}/>;

@@ -25,9 +25,9 @@ const Localization = React.createClass({
     };
   },
 
-  localize(key, values) {
+  localize(key, values, defaultValue) {
     const { messages, localize } = this.props;
-    return localize(messages, key, values);
+    return localize(messages, key, values, defaultValue);
   },
 
   render() {
