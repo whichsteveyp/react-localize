@@ -92,8 +92,3 @@ util.format('There are %d things you have to do today', 5)
 This format is not universal, some message bundles use things like `Welcome {0} to our {1} website}` and simply pass arguments in order. In the future we should probably let you pass in some custom parsing functions to work with different data structures and formatting. It's on the TODO!
 
 The `<Text />` component is just a wrapper intended to help you out when you don't need or want to wire your component up to `contextTypes` and process things yourself. All it's really doing it helping you call `localize(key, ...values)`. By default it returns a span with all the other props you pass this component. If you give it a `function` in the children portion, it will instead invoke that function sort of like: `providedRender(localized, key, ...values)` so you can decide how to render things out.
-
-## More Stuff
-I think you might need to browserify `build/index.js` because of `util` dependency. I have the `dist/` folder but I'm not sure how I feel about all that or what it should do yet.
-
-`¯\_(ツ)_/¯`
