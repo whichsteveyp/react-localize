@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 const { func, objectOf, string } = PropTypes;
-import defaultLocalize from './util/localize-formatter';
+import defaultLocalizer from './util/localize-formatter';
 
 const Localization = React.createClass({
   propTypes: {
@@ -11,7 +11,7 @@ const Localization = React.createClass({
   getDefaultProps() {
     return {
       messages: {},
-      localize: defaultLocalize
+      localize: defaultLocalizer
     };
   },
 
