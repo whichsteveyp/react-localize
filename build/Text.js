@@ -63,3 +63,4 @@ Text.contextTypes = {
 };
 
 exports.default = Text;
+module.exports = exports['default'];

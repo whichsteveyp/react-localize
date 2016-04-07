@@ -67,3 +67,4 @@ var Localization = _react2.default.createClass({
 });
 
 exports.default = Localization;
+module.exports = exports['default'];
