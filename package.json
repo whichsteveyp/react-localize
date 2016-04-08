@@ -4,9 +4,11 @@
   "description": "A simple context wrapper and text localization component for localizing strings",
   "main": "build/index.js",
   "scripts": {
+    "build": "gulp build",
     "githooks": "gulp githooks",
     "precommit": "npm run test",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "prepublish": "in-publish && npm t && npm run build || not-in-publish",
+    "test": "node --harmony tests.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,8 @@
   "author": "Stephen Rivas Jr",
   "license": "ISC",
   "dependencies": {
-    "lodash": "~4.0.0",
+    "in-publish": "2.0.0",
+    "lodash.get": "^4.0.0",
     "util": "0.10.3"
   },
   "peerDependencies": {
@@ -32,10 +35,10 @@
   "devDependencies": {
     "babel-preset-netflix-dea": "1.0.0-alpha.2",
     "babel-register": "6.7.2",
-    "babelify": "6.3.0",
-    "browserify": "13.0.0",
     "gulp": "git://github.com/gulpjs/gulp.git#e1a3feb46dabb80e85e2537ee24efffec4efb94a",
     "gulp-babel": "6.1.2",
-    "vinyl-source-stream": "1.1.0"
+    "gulp-symlink": "2.1.4",
+    "puny": "2.0.2",
+    "react": "^0.14.6"
   }
 }

@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import get from 'lodash.get';
 import React, { PropTypes } from 'react';
 import util from 'util';
 const { func, objectOf, string } = PropTypes;
