@@ -1,20 +1,9 @@
-import babel      from 'gulp-babel';
-import babelify   from 'babelify';
-import browserify from 'browserify';
-import gulp       from 'gulp';
-import source     from 'vinyl-source-stream';
+import babel from 'gulp-babel';
+import gulp  from 'gulp';
 
 //------------------------------------------------------------------------------
-// Build Client Assets
+// Build ES5 Assets
 //------------------------------------------------------------------------------
-export function dist() {
-  return browserify('./src/index.js')
-    .transform(babelify)
-    .bundle()
-    .pipe(source('index.js'))
-    .pipe(gulp.dest('dist'));
-};
-
 export function build() {
   return gulp.src('./src/**/*.js*')
     .pipe(babel({
