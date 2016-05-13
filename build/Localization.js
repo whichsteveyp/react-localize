@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _get = require('lodash/get');
+var _lodash = require('lodash.get');
 
-var _get2 = _interopRequireDefault(_get);
+var _lodash2 = _interopRequireDefault(_lodash);
 
 var _react = require('react');
 
@@ -49,7 +49,7 @@ var Localization = _react2.default.createClass({
   localize: function localize(key) {
     var messages = this.props.messages;
 
-    var string = (0, _get2.default)(messages, key, key);
+    var string = (0, _lodash2.default)(messages, key, key);
 
     for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       values[_key - 1] = arguments[_key];
