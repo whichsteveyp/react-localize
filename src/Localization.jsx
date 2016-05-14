@@ -1,16 +1,18 @@
+import defaultLocalizer from './util/localize-formatter';
 import get from 'lodash.get';
 import React, { PropTypes } from 'react';
-import util from 'util';
 const { func, objectOf, string } = PropTypes;
 
 const Localization = React.createClass({
   propTypes: {
-    messages: objectOf(string).isRequired
+    messages: objectOf(string).isRequired,
+    localize: func
   },
 
   getDefaultProps() {
     return {
-      messages: {}
+      messages: {},
+      localize: defaultLocalizer
     };
   },
 
@@ -24,15 +26,9 @@ const Localization = React.createClass({
     };
   },
 
-  localize(key, ...values) {
-    const { messages } = this.props;
-    let string = get(messages, key, key);
-
-    if (values && string) {
-      string = util.format(string, ...values);
-    }
-
-    return string;
+  localize(key, values, defaultValue) {
+    const { messages, localize } = this.props;
+    return localize(messages, key, values, defaultValue);
   },
 
   render() {
