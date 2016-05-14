@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (messages, key, values, defaultValue) {
-  var string = (0, _get2.default)(messages, key, defaultValue || key);
+  var string = (0, _lodash2.default)(messages, key, defaultValue || key);
 
   if (values && string) {
     return _util2.default.format.apply(_util2.default, [string].concat(_toConsumableArray(values)));
@@ -14,9 +14,9 @@ exports.default = function (messages, key, values, defaultValue) {
   return string;
 };
 
-var _get = require('lodash/get');
+var _lodash = require('lodash.get');
 
-var _get2 = _interopRequireDefault(_get);
+var _lodash2 = _interopRequireDefault(_lodash);
 
 var _util = require('util');
 

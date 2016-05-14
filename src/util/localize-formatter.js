@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import get from 'lodash.get';
 import util from 'util';
 
 export default function(messages, key, values, defaultValue) {
