@@ -5,7 +5,7 @@
  * Given:
  * <Localization messageBundle={{ strings: { HelloWorld: 'Hello, World!' }}}
  *  <AnyParent>
- *    <Text key='localized.strings.HelloWord' style={{ color: 'blue' }} />
+ *    <Text message='localized.strings.HelloWord' style={{ color: 'blue' }} />
  *  </AnyParent>
  * </Localization>
  *
@@ -13,30 +13,28 @@
  */
 
 import React, { PropTypes } from 'react';
-const { array, func, string } = PropTypes;
+const { array, bool, func, string } = PropTypes;
 
 const Text = (props, context) => {
-  const { message, children, values, ...rest } = props;
-  const { localize } = context;
+  const { message, values, ...rest } = props;
+  const { localize, _localizeDebug } = context;
 
   let localized = message;
 
   if (typeof localize === 'function') {
-    localized = localize(message, ...values);
+    localized = localize(message, [...values]);
   }
 
-  // allow for optional alternative API using render-prop pattern
-  if (typeof children === 'function') {
-    return children(localized, message, ...values);
-  } else {
-    return (<span {...rest}>{localized}</span>);
+  if (_localizeDebug) {
+    rest['data-originalMessage'] = message;
   }
+
+  return (<span {...rest}>{localized}</span>);
 };
 
 Text.displayName = 'Text';
 
 Text.propTypes = {
-  children: func,
   message: string.isRequired,
   values: array
 };
@@ -46,7 +44,8 @@ Text.defaultProps = {
 };
 
 Text.contextTypes = {
-  localize: func.isRequired
+  localize: func.isRequired,
+  _localizeDebug: bool
 };
 
 export default Text;

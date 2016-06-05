@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = require('lodash.get');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var _localizeFormatter = require('./util/localize-formatter');
 
 var _localizeFormatter2 = _interopRequireDefault(_localizeFormatter);
@@ -44,11 +48,13 @@ exports.default = function (ComposedComponent) {
       }
     }, {
       key: 'localize',
-      value: function localize(key, values, defaultValue) {
+      value: function localize(key, values) {
+        var message = (0, _lodash2.default)(messages, key, null);
+
         if (typeof customLocalizer === 'function') {
-          return customLocalizer(messages, key, values, defaultValue);
+          return customLocalizer(message, key, values);
         }
-        return (0, _localizeFormatter2.default)(messages, key, values, defaultValue);
+        return (0, _localizeFormatter2.default)(message, key, values);
       }
     }, {
       key: 'render',

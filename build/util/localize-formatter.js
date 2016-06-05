@@ -4,14 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (messages, key, values, defaultValue) {
-  var string = (0, _lodash2.default)(messages, key, defaultValue || key);
-
-  if (values && string) {
-    return _util2.default.format.apply(_util2.default, [string].concat(_toConsumableArray(values)));
+exports.default = function (message, key, values) {
+  if (message) {
+    return _util2.default.format.apply(_util2.default, [message].concat(_toConsumableArray(values)));
   }
 
-  return string;
+  return key;
 };
 
 var _lodash = require('lodash.get');

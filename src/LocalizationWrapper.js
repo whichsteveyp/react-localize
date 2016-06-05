@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import get from 'lodash.get';
 import defaultLocalizer from './util/localize-formatter';
 
 export default (ComposedComponent, messages = {}, customLocalizer) => {
@@ -11,11 +12,13 @@ export default (ComposedComponent, messages = {}, customLocalizer) => {
         localize: this.localize
       };
     }
-    localize(key, values, defaultValue) {
+    localize(key, values) {
+      const message = get(messages, key, null);
+
       if(typeof customLocalizer === 'function') {
-        return customLocalizer(messages, key, values, defaultValue);
+        return customLocalizer(message, key, values);
       }
-      return defaultLocalizer(messages, key, values, defaultValue);
+      return defaultLocalizer(message, key, values);
     }
     render() {
       return <ComposedComponent {...this.props}/>;

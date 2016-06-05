@@ -15,41 +15,41 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var array = _react.PropTypes.array;
+var bool = _react.PropTypes.bool;
 var func = _react.PropTypes.func;
 var string = _react.PropTypes.string;
 
 
 var Text = function Text(props, context) {
   var message = props.message;
-  var children = props.children;
   var values = props.values;
 
-  var rest = _objectWithoutProperties(props, ['message', 'children', 'values']);
+  var rest = _objectWithoutProperties(props, ['message', 'values']);
 
   var localize = context.localize;
+  var _localizeDebug = context._localizeDebug;
 
 
   var localized = message;
 
   if (typeof localize === 'function') {
-    localized = localize.apply(undefined, [message].concat(_toConsumableArray(values)));
+    localized = localize(message, [].concat(_toConsumableArray(values)));
   }
 
-  if (typeof children === 'function') {
-    return children.apply(undefined, [localized, message].concat(_toConsumableArray(values)));
-  } else {
-    return _react2.default.createElement(
-      'span',
-      rest,
-      localized
-    );
+  if (_localizeDebug) {
+    rest['data-originalMessage'] = message;
   }
+
+  return _react2.default.createElement(
+    'span',
+    rest,
+    localized
+  );
 };
 
 Text.displayName = 'Text';
 
 Text.propTypes = {
-  children: func,
   message: string.isRequired,
   values: array
 };
@@ -59,7 +59,8 @@ Text.defaultProps = {
 };
 
 Text.contextTypes = {
-  localize: func.isRequired
+  localize: func.isRequired,
+  _localizeDebug: bool
 };
 
 exports.default = Text;

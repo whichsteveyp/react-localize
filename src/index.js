@@ -4,4 +4,4 @@ import LocalizationWrapper from './LocalizationWrapper';
 import LocalizationConnector from './LocalizationConnector';
 
 export default Localization;
-export { Text, LocalizationWrapper, LocalizationConnector};
+export { Text, LocalizationWrapper, LocalizationConnector };
