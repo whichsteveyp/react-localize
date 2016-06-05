@@ -26,7 +26,7 @@ const Text = (props, context) => {
   }
 
   if (_localizeDebug) {
-    rest['data-originalMessage'] = message;
+    rest['data-original-message'] = message;
   }
 
   return (<span {...rest}>{localized}</span>);
