@@ -55,17 +55,18 @@ var Localization = _react2.default.createClass({
       _localizeDebug: this.props.debug
     };
   },
-  localize: function localize(key, values) {
+  localize: function localize(key) {
+    var values = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
     var _props = this.props;
     var messages = _props.messages;
     var xLocale = _props.xLocale;
 
-    var message = (0, _lodash2.default)(messages, key, null);
 
     if (xLocale) {
       return 'XXXXXX';
     }
 
+    var message = (0, _lodash2.default)(messages, key, null);
     return this.props.localize(message, key, values);
   },
   render: function render() {

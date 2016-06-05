@@ -37,7 +37,7 @@ var Text = function Text(props, context) {
   }
 
   if (_localizeDebug) {
-    rest['data-originalMessage'] = message;
+    rest['data-original-message'] = message;
   }
 
   return _react2.default.createElement(

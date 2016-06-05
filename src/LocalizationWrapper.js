@@ -25,9 +25,9 @@ export default (ComposedComponent, messages = {}, customLocalizer) => {
     }
   }
 
-  ConfigureLocalization.displayName = 'ConfigureLocalization';
-  ConfigureLocalization.childContextTypes = {
+  ConfigureLocalization.displayName = 'Wrapped' + ComposedComponent.displayName;
+  ConfigureLocalization.childContextTypes = Object.assign({}, ComposedComponent.childContextTypes, {
     localize: PropTypes.func
-  };
+  });
   return ConfigureLocalization;
 }
