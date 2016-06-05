@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _localizeFormatter = require('./util/localize-formatter');
+
+var _localizeFormatter2 = _interopRequireDefault(_localizeFormatter);
+
 var _lodash = require('lodash.get');
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -12,12 +16,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _util = require('util');
-
-var _util2 = _interopRequireDefault(_util);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var bool = _react.PropTypes.bool;
 var func = _react.PropTypes.func;
 var objectOf = _react.PropTypes.objectOf;
 var string = _react.PropTypes.string;
@@ -27,39 +28,46 @@ var Localization = _react2.default.createClass({
   displayName: 'Localization',
 
   propTypes: {
-    messages: objectOf(string).isRequired
+    messages: objectOf(string).isRequired,
+    localize: func,
+    _localizeDebug: bool,
+    xLocale: bool
   },
 
   getDefaultProps: function getDefaultProps() {
     return {
-      messages: {}
+      messages: {},
+      localize: _localizeFormatter2.default,
+      _localizeDebug: false,
+      xLocale: false
     };
   },
 
 
   childContextTypes: {
-    localize: func
+    localize: func,
+    _localizeDebug: bool
   },
 
   getChildContext: function getChildContext() {
     return {
-      localize: this.localize
+      localize: this.localize,
+      _localizeDebug: this.props.debug
     };
   },
   localize: function localize(key) {
-    var messages = this.props.messages;
+    var values = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+    var _props = this.props;
+    var messages = _props.messages;
+    var xLocale = _props.xLocale;
 
-    var string = (0, _lodash2.default)(messages, key, key);
 
-    for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      values[_key - 1] = arguments[_key];
+    if (xLocale) {
+      return 'XXXXXX';
     }
 
-    if (values && string) {
-      string = _util2.default.format.apply(_util2.default, [string].concat(values));
-    }
-
-    return string;
+    var message = (0, _lodash2.default)(messages, key, null);
+    return this.props.localize(message, key, values);
   },
   render: function render() {
     return this.props.children;

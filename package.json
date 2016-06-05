@@ -1,6 +1,6 @@
 {
   "name": "react-localize",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha",
   "description": "A simple context wrapper and text localization component for localizing strings",
   "main": "build/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "githooks": "gulp githooks",
     "precommit": "npm run test",
     "prepublish": "in-publish && npm t && npm run build || not-in-publish",
-    "test": "node --harmony tests.js"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -35,10 +35,14 @@
   "devDependencies": {
     "babel-preset-netflix-dea": "1.0.0-alpha.2",
     "babel-register": "6.7.2",
-    "gulp": "git://github.com/gulpjs/gulp.git#e1a3feb46dabb80e85e2537ee24efffec4efb94a",
+    "chai": "^3.5.0",
+    "gulp": "git://github.com/gulpjs/gulp.git#aaed69d1fd73750227e803035b2a75d0f49e7de0",
     "gulp-babel": "6.1.2",
+    "gulp-mocha": "^2.2.0",
     "gulp-symlink": "2.1.4",
-    "puny": "2.0.2",
-    "react": "^0.14.6"
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.5.3",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.8"
   }
 }
