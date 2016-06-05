@@ -34,12 +34,12 @@ const Localization = React.createClass({
 
   localize(key, values=[]) {
     const { messages, xLocale } = this.props;
-    const message = get(messages, key, null);
 
     if (xLocale) {
       return 'XXXXXX';
     }
 
+    const message = get(messages, key, null);
     return this.props.localize(message, key, values);
   },
 

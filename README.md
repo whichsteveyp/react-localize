@@ -1,29 +1,27 @@
 # react-localize
 A simple context wrapper and text localization component for localizing strings.
 
-I'm releasing this a bit early, in terms of 'production ready best component' but I know that if I wait to do that it'll be yet-another-not-released thing I work on. I'd love to collaborate on making it better too - open an issue or send a PR if you'd like. A good place to start would be the [TODO.md](https://github.com/sprjr/react-localize/blob/master/TODO.md)
+## Getting Started, Quickly:
 
-### You probably know this part:
+### Install it from [npm, Inc.](http://www.npmjs.org):
 `npm i react-localize`
 
-
-## You can use it like this:
-
-### Default, simplest use with the built in helpers:
+### Use it in your React App (with <Text /> helper):
 ```
 import Localization, { Text } from 'react-localize';
-
-<Localization messages={{
+const localizationBundle = {
   'app.button.Submit': 'Submit',
   foo: {
     bar: 'Hey %s, you must be %d old?'
   }
-}}>
-  <AnyParent>
+};
+
+<Localization messages={localizationBundle}>
+  <AnyParentComponent>
     <Text message="prop.Val" style={{ color: 'blue' }} />
     <Text message="app.button.Submit" data-magic="pretty neat" />
     <Text message="foo.bar" values={['Foophen', 32]} style={{ color: 'red' }} />
-  </AnyParent>
+  </AnyParentComponent>
 </Localization>
 
 // outputs (respectively):
@@ -31,26 +29,8 @@ import Localization, { Text } from 'react-localize';
 // <span data-magic="pretty neat">Submit</span>
 // <span style="color: red">Hey Foophen, you must be 32 old?</span>
 ```
-(this is great for really simple uses, like buttons or simple UI-text)
 
-
-### Also you can defer rendering for custom output:
-```
-<Text message='some.key'>
-{(localized, message, ...values) => {
-  // message & ...values are optional, and are really just whatever you sent in on props
-
-  return <input type="text" placholder={localized} />
-}}
-</Text>
-
-// outputs (perhaps obviously?)
-// <input type="text" placholder={localized} />
-```
-(that's so you can use something other than span, or put localized text in attributes, mostly)
-
-
-### Also you don't have to use the `<Text />` helper either:
+### Use it in your React App (with context.localize() method):
 ```
 // app.js
 <Localization messages={myBundle}>
@@ -72,14 +52,64 @@ export default YourComponent = (props, context) => {
   return <TabsMaybe tabs={tabConfig} />
 };
 ```
-(in the event you need to localize something that doesn't go directly in to a JSX ouput or needs done before handing to some other component to handle.)
 
-## How does it work?
-`<Localization />` exposes a `localize(key, ...values)` function that is passed through [ReactJS Context](https://facebook.github.io/react/docs/context.html) to all children in the render tree it wraps. It takes a `messages` property that should be formatted like `{ 'mykey.path.to.Value': 'Value' }` or `{ myKey: { path: { to: { Value: 'Value' } } } }`.
+## More Info & Usage:
+`<Localization />` exposes a `localize(key, values)` function that is passed through [ReactJS Context](https://facebook.github.io/react/docs/context.html) to all children in the render tree it wraps. It takes a `messages` property that should be formatted like `{ 'mykey.path.to.Value': 'Value' }` or `{ myKey: { path: { to: { Value: 'Value' } } } }`.
 
-By default, under the hood `localize` simply tries to look things up using `lodash/get`, and will either return the value found there **or** the original `key` that you pass it as a fallback.
+The `<Text />` component is just a wrapper intended to help you out when you don't need or want to wire your component up to `contextTypes` and process things yourself. All it's really doing it helping you call `localize(key, values)`. By default it returns a span with all the other props you pass this component. Because this renders a `<span>` it's not always useful, for example when localizing `<input placeholder='something' />`.
 
-Additionally, you can pass in values to have them `printf` formatted against the string that it does find. You can read more about how that works on [util.format](https://nodejs.org/api/util.html#util_util_format_format) as well. Here's some quick examples:
+### LocalizationWrapper
+If you need to do non-JSX localization and you just want the string back, you must wire your component up to context in order to pick up the formatter function. We provide an HOC wrapper to help with this, like so:
+
+```
+import { LocalizationWrapper } from 'react-localize';
+
+const MyComponent = React.createClass({
+  // stuff
+  render() {
+    return <input placeholder={this.context.localize('foo')} />;
+  }
+
+});
+
+export default LocalizationWrapper(MyComponent);
+
+```
+This is just a convenience HOC for delcaring `contextTypes` on your component, which you're welcome to do if you don't like this pattern.
+
+
+### LocalizationConnector
+There's also an HOC wrapper to quickly provide childContextTypes for a given component. Let's redo the first example above using this pattern:
+
+```
+// app.js
+import { LocalizationWrapper } from 'react-localize';
+import MyApp from './app.js';
+
+const localizationBundle = {
+  'app.button.Submit': 'Submit',
+  foo: {
+    bar: 'Hey %s, you must be %d old?'
+  }
+};
+
+export default LocalizationWrapper(MyApp, localizationBundle)
+```
+This is just a convenience HOC for declaring `childContextTypes` for your app, the same way `<Localization><MyApp /></Localization>` does.
+
+
+## Available Props
+
+### xLocale
+If you pass `<Localization xLocale={true} />` this short circuits `context.localize()` calls to always return `XXXXXX`. This can be useful for viewing your UI and identifying which parts of the application are not using localization.
+
+### debug
+Utilizing `<Localization debug={true} />` expands the `<Text />` helper to include an HTML attribute `data-original-message`, which will be set to the `message` prop given. This can be useful in areas like Chrome DevTools where you want to see what key an element is using to localize things without having to swap back to your code.
+
+### localize
+`context.localize(key, values)` simply tries to look `messageBundle[key]` up using `lodash/get`. It then calls `this.props.localize(message, key, values);` so that the string can be formatted, you can utilize the default formatter function we provide, or you can override this to suit your needs. If the key is not found on your bundle, by default you'll receive the key back.
+
+The default `localize()` format function behaves similar to `printf` formatted strings. You can read more about how that works on [util.format](https://nodejs.org/api/util.html#util_util_format_format) as well. Here's some quick examples:
 
 ```
 util.format('Why hello, %s!', 'Foophen');
@@ -88,10 +118,6 @@ util.format('Why hello, %s!', 'Foophen');
 util.format('There are %d things you have to do today', 5)
 // There are 5 things you have to do today
 ```
-
-This format is not universal, some message bundles use things like `Welcome {0} to our {1} website}` and simply pass arguments in order. In the future we should probably let you pass in some custom parsing functions to work with different data structures and formatting. It's on the TODO!
-
-The `<Text />` component is just a wrapper intended to help you out when you don't need or want to wire your component up to `contextTypes` and process things yourself. All it's really doing it helping you call `localize(key, ...values)`. By default it returns a span with all the other props you pass this component. If you give it a `function` in the children portion, it will instead invoke that function sort of like: `providedRender(localized, key, ...values)` so you can decide how to render things out.
 
 ## Testing
 React is in package.json's dev and peer dependencies because React is required for running the tests. You'll need to build before the tests will work as they're run against the built files. We're using Puny to test because tests for react-localize should be simple & fast.
