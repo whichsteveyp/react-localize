@@ -7,7 +7,8 @@ A simple context wrapper and text localization component for localizing strings.
 `npm i react-localize`
 
 ### Use it in your React App (with <Text /> helper):
-```
+
+```js
 import Localization, { Text } from 'react-localize';
 const localizationBundle = {
   'app.button.Submit': 'Submit',
@@ -31,7 +32,8 @@ const localizationBundle = {
 ```
 
 ### Use it in your React App (with context.localize() method):
-```
+
+```js
 // app.js
 <Localization messages={myBundle}>
   <YourComponent />
@@ -61,7 +63,7 @@ The `<Text />` component is just a wrapper intended to help you out when you don
 ### LocalizationWrapper
 If you need to do non-JSX localization and you just want the string back, you must wire your component up to context in order to pick up the formatter function. We provide an HOC wrapper to help with this, like so:
 
-```
+```js
 import { LocalizationWrapper } from 'react-localize';
 
 const MyComponent = React.createClass({
@@ -75,13 +77,14 @@ const MyComponent = React.createClass({
 export default LocalizationWrapper(MyComponent);
 
 ```
+
 This is just a convenience HOC for delcaring `contextTypes` on your component, which you're welcome to do if you don't like this pattern.
 
 
 ### LocalizationConnector
 There's also an HOC wrapper to quickly provide childContextTypes for a given component. Let's redo the first example above using this pattern:
 
-```
+```js
 // app.js
 import { LocalizationWrapper } from 'react-localize';
 import MyApp from './app.js';
@@ -95,6 +98,7 @@ const localizationBundle = {
 
 export default LocalizationWrapper(MyApp, localizationBundle)
 ```
+
 This is just a convenience HOC for declaring `childContextTypes` for your app, the same way `<Localization><MyApp /></Localization>` does.
 
 
@@ -111,7 +115,7 @@ Utilizing `<Localization debug={true} />` expands the `<Text />` helper to inclu
 
 The default `localize()` format function behaves similar to `printf` formatted strings. You can read more about how that works on [util.format](https://nodejs.org/api/util.html#util_util_format_format) as well. Here's some quick examples:
 
-```
+```js
 util.format('Why hello, %s!', 'Foophen');
 // 'Why hello, Foophen!'
 
@@ -122,7 +126,7 @@ util.format('There are %d things you have to do today', 5)
 ## Testing
 React is in package.json's dev and peer dependencies because React is required for running the tests. You'll need to build before the tests will work as they're run against the built files. We're using Puny to test because tests for react-localize should be simple & fast.
 
-```
+```sh
 npm run build
 npm t
 ```
