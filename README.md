@@ -1,6 +1,8 @@
 # react-localize
 A simple context wrapper and text localization component for localizing strings.
 
+[![Travis build status](http://img.shields.io/travis/sprjr/react-localize.svg?style=flat)](https://travis-ci.org/sprjr/react-localize/)
+
 ## Getting Started, Quickly:
 
 ### Install it from [npm, Inc.](http://www.npmjs.org):
