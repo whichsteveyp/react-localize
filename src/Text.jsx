@@ -22,7 +22,7 @@ const Text = (props, context) => {
   let localized = message;
 
   if (typeof localize === 'function') {
-    localized = localize(message, [...values]);
+    localized = localize(message, values);
   }
 
   if (_localizeDebug) {
