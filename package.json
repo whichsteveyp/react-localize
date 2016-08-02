@@ -1,6 +1,6 @@
 {
   "name": "react-localize",
-  "version": "1.0.0-rc4",
+  "version": "1.1.0",
   "description": "A simple context wrapper and text localization component for localizing strings",
   "main": "build/index.js",
   "scripts": {

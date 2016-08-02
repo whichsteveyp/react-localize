@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 _(add items here to be added to future release)_
+
+## 1.1.0 2016-08-02
 ### Added
 - Support for peerDependency `react@^0.14.6 || 15.x`
 - Changelog formatting for better release tracking
