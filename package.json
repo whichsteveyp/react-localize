@@ -6,9 +6,10 @@
   "scripts": {
     "build": "gulp build",
     "githooks": "gulp githooks",
-    "precommit": "npm run test",
+    "precommit": "npm run lint && npm run test",
     "prepublish": "in-publish && npm t && npm run build || not-in-publish",
-    "test": "gulp test"
+    "test": "gulp test",
+    "lint": "eslint src/*.jsx"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,11 @@
     "babel-preset-netflix-dea": "1.0.0-alpha.2",
     "babel-register": "6.7.2",
     "chai": "^3.5.0",
+    "eslint": "3.6.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "2.2.2",
+    "eslint-plugin-react": "6.3.0",
     "gulp": "git://github.com/gulpjs/gulp.git#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
     "gulp-babel": "6.1.2",
     "gulp-mocha": "^2.2.0",

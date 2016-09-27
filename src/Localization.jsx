@@ -1,36 +1,16 @@
-import defaultLocalizer from './util/localize-formatter';
 import get from 'lodash.get';
 import React, { PropTypes } from 'react';
-const { bool, func, objectOf, string } = PropTypes;
+import defaultLocalizer from './util/localize-formatter';
 
-const Localization = React.createClass({
-  propTypes: {
-    messages: objectOf(string).isRequired,
-    localize: func,
-    _localizeDebug: bool,
-    xLocale: bool
-  },
+const { element, bool, func, objectOf, string } = PropTypes;
 
-  getDefaultProps() {
-    return {
-      messages: {},
-      localize: defaultLocalizer,
-      _localizeDebug: false,
-      xLocale: false
-    };
-  },
-
-  childContextTypes: {
-    localize: func,
-    _localizeDebug: bool
-  },
-
+class Localization extends React.Component {
   getChildContext() {
     return {
-      localize: this.localize,
-      _localizeDebug: this.props.debug
+      _localizeDebug: this.props.debug,
+      localize: this.localize
     };
-  },
+  }
 
   localize(key, values) {
     values = values || [];
@@ -42,11 +22,31 @@ const Localization = React.createClass({
 
     const message = get(messages, key, null);
     return this.props.localize(message, key, values);
-  },
+  }
 
   render() {
     return this.props.children;
   }
-});
+}
+
+Localization.propTypes = {
+  children: element,
+  debug: bool,
+  localize: func,
+  messages: objectOf(string).isRequired,
+  xLocale: bool
+};
+
+Localization.defaultProps = {
+  debug: false,
+  localize: defaultLocalizer,
+  messages: {},
+  xLocale: false
+};
+
+Localization.childContextTypes = {
+  _localizeDebug: bool,
+  localize: func
+};
 
 export default Localization;

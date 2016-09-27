@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 _(add items here to be added to future release)_
+### Added
+- Support for `.eslintrc`, code clean up to get `src/` directory passing new rules
 
 ## 1.1.1 2016-08-02
 ### Fixed
