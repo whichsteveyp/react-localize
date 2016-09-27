@@ -5,6 +5,11 @@ import defaultLocalizer from './util/localize-formatter';
 const { element, bool, func, objectOf, string } = PropTypes;
 
 class Localization extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.localize = this.localize.bind(this);
+  }
+
   getChildContext() {
     return {
       _localizeDebug: this.props.debug,
