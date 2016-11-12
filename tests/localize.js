@@ -86,6 +86,20 @@ describe('Localize Context Value', () => {
     expect(output).to.include('>give me a string by itself<');
   });
 
+  it('ignores provided values if is null', () => {
+    const messages = {
+      'thisMessage': 'thatMessage'
+    };
+
+    let output = ReactDOMServer.renderToString(
+      <Localization messages={messages}>
+        <BasicElement customMessage='thisMessage' values={null}/>
+      </Localization>
+    );
+
+    expect(output).to.include('>thatMessage<');
+  });
+
   it('adds a data key when localize is in debug mode', () => {
     const messages = {
       'this.is.a.message': "This is some cool message"

@@ -32,7 +32,8 @@ const Localization = React.createClass({
     };
   },
 
-  localize(key, values=[]) {
+  localize(key, values) {
+    values = values || [];
     const { messages, xLocale } = this.props;
 
     if (xLocale) {
