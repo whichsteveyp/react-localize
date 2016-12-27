@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file. This projec
 _(add items here to be added to future release)_
 ### Added
 - Support for `.eslintrc`, code clean up to get `src/` directory passing new rules
+- Connected components can now log warnings out when `_localizeDebug` is set, and will
+always be passed a safe to invoke function regardless of a missing context function.
+
+### Changed
+- Localization Connector now behaves more like redux `connect()` in that it passes
+`localize()` as a prop to components now, removing the need for components to access
+context.
+- Project now uses `save-exact` for installed dependencies
 
 ## 1.1.1 2016-08-02
 ### Fixed

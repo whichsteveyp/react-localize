@@ -62,11 +62,11 @@ export default YourComponent = (props, context) => {
 
 The `<Text />` component is just a wrapper intended to help you out when you don't need or want to wire your component up to `contextTypes` and process things yourself. All it's really doing it helping you call `localize(key, values)`. By default it returns a span with all the other props you pass this component. Because this renders a `<span>` it's not always useful, for example when localizing `<input placeholder='something' />`.
 
-### LocalizationConnector
+### localizationConnector
 This connector behaves similarly to [connect()](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) in that it will take a `context.localize()` function provided by `<Localization/>` and then pass it as a prop to the component you're intending to use.
 
 ```js
-import { LocalizationConnector } from 'react-localize';
+import { localizationConnector } from 'react-localize';
 
 const MyComponent = props => {
   const {label, localize} = this.props;
@@ -76,7 +76,7 @@ const MyComponent = props => {
   </p>
 };
 
-export default LocalizationConnector(MyComponent);
+export default localizationConnector(MyComponent);
 ```
 
 ### LocalizationWrapper
