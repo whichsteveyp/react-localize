@@ -62,28 +62,24 @@ export default YourComponent = (props, context) => {
 
 The `<Text />` component is just a wrapper intended to help you out when you don't need or want to wire your component up to `contextTypes` and process things yourself. All it's really doing it helping you call `localize(key, values)`. By default it returns a span with all the other props you pass this component. Because this renders a `<span>` it's not always useful, for example when localizing `<input placeholder='something' />`.
 
-### LocalizationWrapper
-If you need to do non-JSX localization and you just want the string back, you must wire your component up to context in order to pick up the formatter function. We provide an HOC wrapper to help with this, like so:
+### LocalizationConnector
+This connector behaves similarly to [connect()](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) in that it will take a `context.localize()` function provided by `<Localization/>` and then pass it as a prop to the component you're intending to use.
 
 ```js
-import { LocalizationWrapper } from 'react-localize';
+import { LocalizationConnector } from 'react-localize';
 
-const MyComponent = React.createClass({
-  // stuff
-  render() {
-    return <input placeholder={this.context.localize('foo')} />;
-  }
+const MyComponent = props => {
+  const {label, localize} = this.props;
+  return <p>
+    <label>{label}</label>
+    <input placeholder={localize('foo')} />;
+  </p>
+};
 
-});
-
-export default LocalizationWrapper(MyComponent);
-
+export default LocalizationConnector(MyComponent);
 ```
 
-This is just a convenience HOC for delcaring `contextTypes` on your component, which you're welcome to do if you don't like this pattern.
-
-
-### LocalizationConnector
+### LocalizationWrapper
 There's also an HOC wrapper to quickly provide childContextTypes for a given component. Let's redo the first example above using this pattern:
 
 ```js
