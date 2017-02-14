@@ -6,9 +6,10 @@
   "scripts": {
     "build": "gulp build",
     "githooks": "gulp githooks",
-    "precommit": "npm run test",
+    "precommit": "npm run lint && npm run test",
     "prepublish": "in-publish && npm t && npm run build || not-in-publish",
-    "test": "gulp test"
+    "test": "gulp test",
+    "lint": "eslint src/*.jsx"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "in-publish": "2.0.0",
-    "lodash.get": "^4.0.0",
+    "lodash.get": "4.0.0",
     "util": "0.10.3"
   },
   "peerDependencies": {
@@ -35,14 +36,19 @@
   "devDependencies": {
     "babel-preset-netflix-dea": "1.0.0-alpha.2",
     "babel-register": "6.7.2",
-    "chai": "^3.5.0",
+    "chai": "3.5.0",
+    "eslint": "3.6.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "2.2.2",
+    "eslint-plugin-react": "6.3.0",
     "gulp": "git://github.com/gulpjs/gulp.git#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
     "gulp-babel": "6.1.2",
-    "gulp-mocha": "^2.2.0",
+    "gulp-mocha": "2.2.0",
     "gulp-symlink": "2.1.4",
-    "gulp-util": "^3.0.7",
-    "mocha": "^2.5.3",
-    "react": "^0.14.6 || 15.x",
-    "react-dom": "^0.14.6 || 15.x"
+    "gulp-util": "3.0.7",
+    "mocha": "2.5.3",
+    "react": "0.14.6 || 15.x",
+    "react-dom": "0.14.6 || 15.x"
   }
 }

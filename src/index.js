@@ -1,7 +1,7 @@
 import Localization from './Localization';
-import { default as Text } from './Text';
+import localizationConnector from './LocalizationConnector';
 import LocalizationWrapper from './LocalizationWrapper';
-import LocalizationConnector from './LocalizationConnector';
+import Text from './Text';
 
 export default Localization;
-export { Text, LocalizationWrapper, LocalizationConnector };
+export { Text, LocalizationWrapper, localizationConnector };

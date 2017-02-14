@@ -13,7 +13,8 @@
  */
 
 import React, { PropTypes } from 'react';
-const { array, bool, func, string } = PropTypes;
+
+const { arrayOf, bool, func, string, any } = PropTypes;
 
 const Text = (props, context) => {
   const { message, values, ...rest } = props;
@@ -36,7 +37,7 @@ Text.displayName = 'Text';
 
 Text.propTypes = {
   message: string.isRequired,
-  values: array
+  values: arrayOf(any)
 };
 
 Text.defaultProps = {
