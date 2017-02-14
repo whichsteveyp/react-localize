@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased]
 _(add items here to be added to future release)_
+
+## 2.0.0 2017-02-14
 ### Added
 - Support for `.eslintrc`, code clean up to get `src/` directory passing new rules
 - Connected components can now log warnings out when `_localizeDebug` is set, and will

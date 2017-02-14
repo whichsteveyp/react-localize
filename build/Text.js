@@ -12,10 +12,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var array = _react.PropTypes.array;
+var arrayOf = _react.PropTypes.arrayOf;
 var bool = _react.PropTypes.bool;
 var func = _react.PropTypes.func;
 var string = _react.PropTypes.string;
+var any = _react.PropTypes.any;
 
 
 var Text = function Text(props, context) {
@@ -49,7 +50,7 @@ Text.displayName = 'Text';
 
 Text.propTypes = {
   message: string.isRequired,
-  values: array
+  values: arrayOf(any)
 };
 
 Text.defaultProps = {

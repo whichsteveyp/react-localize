@@ -35,10 +35,10 @@ exports.default = function (ComposedComponent) {
   var ConfigureLocalization = function (_Component) {
     _inherits(ConfigureLocalization, _Component);
 
-    function ConfigureLocalization(props) {
+    function ConfigureLocalization() {
       _classCallCheck(this, ConfigureLocalization);
 
-      return _possibleConstructorReturn(this, Object.getPrototypeOf(ConfigureLocalization).call(this, props));
+      return _possibleConstructorReturn(this, Object.getPrototypeOf(ConfigureLocalization).apply(this, arguments));
     }
 
     _createClass(ConfigureLocalization, [{
@@ -49,6 +49,11 @@ exports.default = function (ComposedComponent) {
         };
       }
     }, {
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(ComposedComponent, this.props);
+      }
+    }], [{
       key: 'localize',
       value: function localize(key, values) {
         var message = (0, _lodash2.default)(messages, key, null);
@@ -56,22 +61,17 @@ exports.default = function (ComposedComponent) {
         if (typeof customLocalizer === 'function') {
           return customLocalizer(message, key, values);
         }
+
         return (0, _localizeFormatter2.default)(message, key, values);
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(ComposedComponent, this.props);
       }
     }]);
 
     return ConfigureLocalization;
   }(_react.Component);
 
-  ConfigureLocalization.displayName = 'Wrapped' + ComposedComponent.displayName;
-  ConfigureLocalization.childContextTypes = _extends({}, ComposedComponent.childContextTypes, {
-    localize: _react.PropTypes.func
-  });
+  ConfigureLocalization.displayName = 'Wrapped' + (ComposedComponent.displayName || ComposedComponent.name || 'Component');
+  ConfigureLocalization.childContextTypes = _extends({}, ComposedComponent.childContextTypes, { localize: _react.PropTypes.func });
+
   return ConfigureLocalization;
 };
 
