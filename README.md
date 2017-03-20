@@ -48,7 +48,7 @@ export default YourComponent = (props, context) => {
   const tabsConfig = props.tabsArray.map((tab) => {
     return {
       id: tab.id,
-      message: context.localize(tab.label)
+      message: context.localize('tab.label')
       onClick: () => props.onTabClick(tab.id)
     };
   });
