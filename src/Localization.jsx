@@ -2,7 +2,7 @@ import get from 'lodash.get';
 import React, { PropTypes } from 'react';
 import defaultLocalizer from './util/localize-formatter';
 
-const { element, bool, func, objectOf, string } = PropTypes;
+const { element, bool, func, object, string } = PropTypes;
 
 class Localization extends React.Component {
   constructor(props, context) {
@@ -38,7 +38,7 @@ Localization.propTypes = {
   children: element,
   debug: bool,
   localize: func,
-  messages: objectOf(string).isRequired,
+  messages: object.isRequired,
   xLocale: bool
 };
 
