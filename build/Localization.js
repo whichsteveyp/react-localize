@@ -29,8 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var element = _react.PropTypes.element;
 var bool = _react.PropTypes.bool;
 var func = _react.PropTypes.func;
-var objectOf = _react.PropTypes.objectOf;
-var string = _react.PropTypes.string;
+var object = _react.PropTypes.object;
 
 var Localization = function (_React$Component) {
   _inherits(Localization, _React$Component);
@@ -82,7 +81,7 @@ Localization.propTypes = {
   children: element,
   debug: bool,
   localize: func,
-  messages: objectOf(string).isRequired,
+  messages: object.isRequired,
   xLocale: bool
 };
 
