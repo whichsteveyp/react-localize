@@ -1,7 +1,8 @@
 import Chai from 'chai';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-const { expect} = Chai;
+import bundle from './data/egghead-bundle';
+const { expect } = Chai;
 
 import Localization from '../src/Localization.jsx';
 import Text from '../src/Text.jsx';
@@ -19,6 +20,20 @@ describe('Text JSX Component', () => {
     );
 
     expect(output).to.include('>This is some cool message<');
+  });
+
+  it('should work with nested data structures', () => {
+    let output = ReactDOMServer.renderToString(
+      <Localization messages={bundle}>
+        <div>
+          <Text message='pagination.previous'/>
+          <Text message='navigation.lessons'/>
+        </div>
+      </Localization>
+    );
+
+    expect(output).to.include('>Previous<');
+    expect(output).to.include('>Lessons<');
   });
 
   it('renders out an interpolated message', () => {

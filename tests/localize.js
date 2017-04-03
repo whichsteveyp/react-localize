@@ -1,8 +1,8 @@
 import Chai from 'chai';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-const { expect} = Chai;
-
+const {expect} = Chai;
+import bundle from './data/egghead-bundle';
 import Localization from '../src/Localization.jsx';
 import Text from '../src/Text.jsx';
 
