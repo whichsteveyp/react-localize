@@ -1,4 +1,6 @@
 # react-localize
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/sprjr/react-localize.svg)](https://greenkeeper.io/)
 A simple context wrapper and text localization component for localizing strings.
 
 [![Travis build status](http://img.shields.io/travis/sprjr/react-localize.svg?style=flat)](https://travis-ci.org/sprjr/react-localize/)
