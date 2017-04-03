@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gulp build",
     "githooks": "gulp githooks",
-    "precommit": "npm run lint && npm run test",
+    "precommit": "npm run test",
     "prepublish": "in-publish && npm t && npm run build || not-in-publish",
     "test": "gulp test",
     "lint": "eslint src/*.jsx"
