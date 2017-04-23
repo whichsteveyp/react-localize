@@ -1,5 +1,6 @@
 import Chai from 'chai';
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 const {expect} = Chai;
 import bundle from './data/egghead-bundle';
@@ -10,7 +11,7 @@ describe('Localize Context Value', () => {
 
   const BasicElement = React.createClass({
     contextTypes: {
-      localize: React.PropTypes.func
+      localize: PropTypes.func
     },
 
     render() {

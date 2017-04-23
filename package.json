@@ -3,7 +3,9 @@
   "version": "2.0.1",
   "description": "A simple context wrapper and text localization component for localizing strings",
   "main": "build/index.js",
-  "files": ["build"],
+  "files": [
+    "build"
+  ],
   "scripts": {
     "build": "gulp build",
     "githooks": "gulp githooks",
@@ -32,10 +34,14 @@
     "util": "0.10.3"
   },
   "peerDependencies": {
-    "react": "^0.14.6 || 15.x"
+    "prop-types": ">=15",
+    "react": "^0.14.9 || >=15"
   },
   "devDependencies": {
-    "babel-preset-netflix-dea": "1.0.0-alpha.2",
+    "babel-preset-latest": "6.24.1",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-plugin-transform-react-jsx": "6.23.0",
+    "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.24.1",
     "chai": "3.5.0",
     "eslint": "3.19.0",
@@ -49,7 +55,8 @@
     "gulp-symlink": "2.1.4",
     "gulp-util": "3.0.8",
     "mocha": "3.3.0",
-    "react": "0.14.6 || 15.x",
-    "react-dom": "0.14.6 || 15.x"
+    "prop-types": ">=15",
+    "react": "^0.14.9 || >=15",
+    "react-dom": "^0.14.9 || >=15"
   }
 }

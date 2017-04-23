@@ -1,5 +1,6 @@
 import get from 'lodash.get';
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import defaultLocalizer from './util/localize-formatter';
 
 const { element, bool, func, object } = PropTypes;

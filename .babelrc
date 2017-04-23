@@ -1,3 +1,7 @@
 {
-  "presets": ["netflix-dea"]
+  "presets": ["latest", "stage-2"],
+  "plugins": [
+    "add-module-exports",
+    "transform-react-jsx",
+  ]
 }

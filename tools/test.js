@@ -4,7 +4,11 @@ import util from 'gulp-util';
 
 function test() {
   return gulp.src(['tests/**/*.js'], { read: false })
-    .pipe(mocha({ recursive: true, reporter: 'dot' }))
+    .pipe(mocha({
+      recursive: true,
+      reporter: 'dot',
+      require: ['babel-register']
+    }))
     .on('error', util.log);
 }
 
