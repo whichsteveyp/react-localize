@@ -7,19 +7,19 @@ import bundle from './data/egghead-bundle';
 import Localization from '../src/Localization.jsx';
 import Text from '../src/Text.jsx';
 
+class BasicElement extends React.Component {
+  static contextTypes = {
+    localize: PropTypes.func
+  }
+
+  render() {
+    const { localize } = this.context;
+    const { customMessage, values } = this.props;
+    return <span>{localize(customMessage, values)}</span>
+  }
+};
+
 describe('Localize Context Value', () => {
-
-  const BasicElement = React.createClass({
-    contextTypes: {
-      localize: PropTypes.func
-    },
-
-    render() {
-      const { localize } = this.context;
-      const { customMessage, values } = this.props;
-      return <span>{localize(customMessage, values)}</span>
-    }
-  })
 
   it('renders out a standard message', () => {
     const messages = {
