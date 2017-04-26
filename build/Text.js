@@ -8,25 +8,28 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var arrayOf = _react.PropTypes.arrayOf;
-var bool = _react.PropTypes.bool;
-var func = _react.PropTypes.func;
-var string = _react.PropTypes.string;
-var any = _react.PropTypes.any;
+var arrayOf = _propTypes2.default.arrayOf,
+    bool = _propTypes2.default.bool,
+    func = _propTypes2.default.func,
+    string = _propTypes2.default.string,
+    any = _propTypes2.default.any;
 
 
 var Text = function Text(props, context) {
-  var message = props.message;
-  var values = props.values;
+  var message = props.message,
+      values = props.values,
+      rest = _objectWithoutProperties(props, ['message', 'values']);
 
-  var rest = _objectWithoutProperties(props, ['message', 'values']);
-
-  var localize = context.localize;
-  var _localizeDebug = context._localizeDebug;
+  var localize = context.localize,
+      _localizeDebug = context._localizeDebug;
 
 
   var localized = message;

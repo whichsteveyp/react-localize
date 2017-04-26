@@ -10,12 +10,16 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (ComposedComponent) {
   var LocalizeConnected = function LocalizeConnected(props, context) {
-    var localize = context.localize;
-    var _localizeDebug = context._localizeDebug;
+    var localize = context.localize,
+        _localizeDebug = context._localizeDebug;
 
 
     var connectedLocalizer = localize;
@@ -37,7 +41,7 @@ exports.default = function (ComposedComponent) {
 
   LocalizeConnected.displayName = 'ReactLocalized(' + ComposedComponent.name + ')';
   LocalizeConnected.contextTypes = {
-    localize: _react.PropTypes.func
+    localize: _propTypes2.default.func
   };
 
   return LocalizeConnected;

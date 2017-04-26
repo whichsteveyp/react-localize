@@ -14,6 +14,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _localizeFormatter = require('./util/localize-formatter');
 
 var _localizeFormatter2 = _interopRequireDefault(_localizeFormatter);
@@ -26,10 +30,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var element = _react.PropTypes.element;
-var bool = _react.PropTypes.bool;
-var func = _react.PropTypes.func;
-var object = _react.PropTypes.object;
+var element = _propTypes2.default.element,
+    bool = _propTypes2.default.bool,
+    func = _propTypes2.default.func,
+    object = _propTypes2.default.object;
 
 var Localization = function (_React$Component) {
   _inherits(Localization, _React$Component);
@@ -37,7 +41,7 @@ var Localization = function (_React$Component) {
   function Localization(props, context) {
     _classCallCheck(this, Localization);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Localization).call(this, props, context));
+    var _this = _possibleConstructorReturn(this, (Localization.__proto__ || Object.getPrototypeOf(Localization)).call(this, props, context));
 
     _this.localize = _this.localize.bind(_this);
     return _this;
@@ -55,9 +59,9 @@ var Localization = function (_React$Component) {
     key: 'localize',
     value: function localize(key, values) {
       values = values || [];
-      var _props = this.props;
-      var messages = _props.messages;
-      var xLocale = _props.xLocale;
+      var _props = this.props,
+          messages = _props.messages,
+          xLocale = _props.xLocale;
 
 
       if (xLocale) {

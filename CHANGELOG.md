@@ -7,6 +7,18 @@ make it easier to update and read.
 ## [Unreleased]
 _(add items here to be added to future release)_
 
+## 3.0.0-beta 2017-04-26
+### Added
+- Support for React 15.5 💯
+  - `peerDependencies` now includes `prop-types` 🎉.
+  - I don't have a strategy yet for you to only include that in development, and
+  strip PropTypes in prod bundles, but that is what you should do especially if size is a concern.
+
+### Changed
+- Updated devDependencies for mocha & babel-register 👍
+- Update Travis CI matrix to test against a wider variety of
+node and react versions.
+
 ## 2.0.1 2017-04-03
 ### Added
 - Tests for `<Text/>` that assert it can work with larger, nested bundles by default
