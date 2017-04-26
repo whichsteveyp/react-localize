@@ -35,7 +35,7 @@
     "react": "^0.14.6 || 15.x"
   },
   "devDependencies": {
-    "babel-preset-netflix-dea": "1.0.0-alpha.2",
+    "babel-preset-netflix-dea": "1.0.0",
     "babel-register": "6.24.0",
     "chai": "3.5.0",
     "eslint": "3.19.0",
