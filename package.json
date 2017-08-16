@@ -42,7 +42,7 @@
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-transform-react-jsx": "6.23.0",
     "babel-preset-stage-2": "6.24.1",
-    "babel-register": "6.24.1",
+    "babel-register": "6.26.0",
     "chai": "3.5.0",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
