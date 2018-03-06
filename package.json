@@ -54,7 +54,7 @@
     "gulp-mocha": "4.3.0",
     "gulp-symlink": "2.1.4",
     "gulp-util": "3.0.8",
-    "mocha": "3.3.0",
+    "mocha": "5.0.2",
     "prop-types": ">=15",
     "react": "^0.14.9 || >=15",
     "react-dom": "^0.14.9 || >=15"
