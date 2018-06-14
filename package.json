@@ -28,7 +28,6 @@
   "license": "ISC",
   "dependencies": {
     "create-react-context": "^0.2.1",
-    "lodash.get": "4.4.2",
     "util": "0.10.3"
   },
   "peerDependencies": {
