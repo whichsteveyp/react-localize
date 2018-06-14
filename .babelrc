@@ -1,7 +1,18 @@
 {
-  "presets": ["latest", "stage-2"],
-  "plugins": [
-    "add-module-exports",
-    "transform-react-jsx",
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            ">0.25%",
+            "not ie 11",
+            "not op_mini all"
+          ]
+        }
+      }
+    ],
+    "react",
+    "stage-2"
   ]
 }

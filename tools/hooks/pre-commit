@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# pre-commit hook for linting & tests
-npm run precommit
-precommitProcess=$?
-
-# now output the stuff
-exit $precommitProcess

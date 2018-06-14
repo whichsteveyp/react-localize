@@ -1,20 +1,16 @@
 language: node_js
 node_js:
   - "stable"
-  - "5"
-  - "4"
 sudo: false
-env: REACT_VERSION=15.5.x
 matrix:
   include:
-    # These versions run different jobs in which we `npm install` other releases
-    # of react (& friends) to run our test suite against those as well
-    - env: REACT_VERSION=0.14.9 REACT_ADDONS_TEST_UTILS_VERSION=^0.14.x
-    # testing the base 15 release
-    - env: REACT_VERSION=15.0.0 REACT_ADDONS_TEST_UTILS_VERSION=15.0.0
-    # testing the current highest supported release
-    - env: REACT_VERSION=15.5.4 REACT_ADDONS_TEST_UTILS_VERSION=15.5.1
-cache: npm
+    # testing the ^15.x releases
+    - env: REACT_VERSION=^15.x
+    # testing the ^16.x releases
+    - env: REACT_VERSION=^16.x
+    # testing the latest release
+    - env: REACT_VERSION=latest
+cache: yarn
 install:
-  - npm install
-  - npm install react@$REACT_VERSION react-dom@$REACT_VERSION react-addons-test-utils@$REACT_ADDONS_TEST_UTILS_VERSION
+  - yarn
+  - yarn add react@$REACT_VERSION react-dom@$REACT_VERSION
