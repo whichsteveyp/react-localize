@@ -6,6 +6,14 @@ make it easier to update and read.
 
 ## [Unreleased]
 _(add items here to be added to future release)_
+### Added
+- Support for older react versions via `create-react-context`
+
+### Changed
+- Basically everything. Aligned with `react-access` from a deps/structure/tooling standpoint
+- The entire API is updated, while conceptually the same its now more
+in line with the latest React Context functionality
+
 
 ## 3.0.0, 3.0.0-beta 2017-04-26
 ### Added
