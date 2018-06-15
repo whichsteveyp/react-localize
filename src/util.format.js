@@ -4,6 +4,7 @@
 // in another file. at any rate all I want is this function:
 
 function format(fmt) {
+  fmt = String(fmt); // this is closer to util.format() behavior
   var re = /(%?)(%([jds]))/g
     , args = Array.prototype.slice.call(arguments, 1);
   if(args.length) {
