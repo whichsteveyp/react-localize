@@ -1,18 +1,46 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": [
-            ">0.25%",
-            "not ie 11",
-            "not op_mini all"
-          ]
-        }
-      }
-    ],
-    "react",
-    "stage-2"
-  ]
+  "env": {
+    "build": {
+      "presets": [["env", { "modules": false }], "stage-3", "react"],
+      "plugins": ["external-helpers", "transform-class-properties"],
+      "ignore": [
+        "*.test.js"
+      ]
+    },
+    "buildProd": {
+      "presets": [["env", { "modules": false }], "stage-3", "react"],
+      "plugins": [
+        "external-helpers",
+        "transform-class-properties",
+        [
+          "transform-react-remove-prop-types",
+          { "mode": "remove", "removeImport": true }
+        ]
+      ],
+      "ignore": [
+        "*.test.js"
+      ]
+    },
+    "es": {
+      "presets": [["env", { "modules": false }], "stage-3", "react"],
+      "plugins": ["transform-class-properties"],
+      "ignore": [
+        "*.test.js"
+      ]
+    },
+    "commonjs": {
+      "plugins": [
+        ["transform-es2015-modules-commonjs", { "loose": true }],
+        "transform-class-properties"
+      ],
+      "presets": ["stage-3", "react"],
+      "ignore": [
+        "*.test.js"
+      ]
+    },
+    "test": {
+      "presets": ["env", "stage-3", "react"],
+      "plugins": ["transform-class-properties"]
+    }
+  }
 }
