@@ -1,8 +1,8 @@
 {
   "name": "react-localize",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "A simple context wrapper and text localization component for localizing strings",
-  "main": "dist/index.js",
+  "main": "dist/react-localize.js",
   "files": [
     "dist"
   ],
