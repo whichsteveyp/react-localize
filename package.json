@@ -28,7 +28,7 @@
   "license": "ISC",
   "dependencies": {
     "create-react-context": "^0.2.1",
-    "util": "0.10.3"
+    "format-util": "1.0.3"
   },
   "peerDependencies": {
     "prop-types": "15.x",

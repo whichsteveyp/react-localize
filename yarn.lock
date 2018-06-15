@@ -2587,6 +2587,10 @@ form-data@~2.3.1:
     combined-stream "1.0.6"
     mime-types "^2.1.12"
 
+format-util@1.0.3:
+  version "1.0.3"
+  resolved "https://artifacts.netflix.com/api/npm/npm-netflix/format-util/-/format-util-1.0.3.tgz#032dca4a116262a12c43f4c3ec8566416c5b2d95"
+
 forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://artifacts.netflix.com/api/npm/npm-netflix/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
@@ -4014,10 +4018,6 @@ locate-path@^2.0.0:
   dependencies:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
-
-lodash.get@4.4.2:
-  version "4.4.2"
-  resolved "https://artifacts.netflix.com/api/npm/npm-netflix/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
 lodash.sortby@^4.7.0:
   version "4.7.0"

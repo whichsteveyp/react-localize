@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactContext from 'create-react-context';
-import { format } from 'util';
+import format from 'format-util';
 
 // by default we want our consumers to just safely return the key provided
 // to it, rather than exploding if not wrapped in a provider properly
