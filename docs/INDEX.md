@@ -1,9 +1,9 @@
 # Table of Contents
 
 * [Home](../README.md)
-* [Quick Start](QUICKSTART.md)
-* [API Reference](api/API.md)
-  * [LocalizationProvider](api/PROVIDER.md)
-  * [LocalizationConsumer](api/CONSUMER.md)
-  * [withLocalization()](api/WITHLOCALIZATION.md)
-* [Examples & Guides](EXAMPSNGUIDES.md)
+* [Quick Start](quick-start.md)
+* [API Reference](api/index.md)
+  * [LocalizationProvider](api/provider.md)
+  * [LocalizationConsumer](api/consumer.md)
+  * [withLocalization()](api/with-localization.md)
+* [Examples & Guides](examples-and-guides.md)
