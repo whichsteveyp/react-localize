@@ -21,7 +21,18 @@ export class LocalizationProvider extends React.Component {
   }
 
   _localize = (key, values) => {
-    const { localize, xLocale, messages } = this.props;
+    const { localize, xLocale, messages, debug } = this.props;
+
+    if (!messages || !key) {
+      if (debug) console.warn('Unable to localize missing messages or key in arguments.');
+      return null;
+    }
+
+    const lookup = messages[key];
+    if (!lookup) {
+      if (debug) console.warn(`Unable to localize missing messages or key in arguments for ${key}`);
+      return key;
+    }
 
     if (xLocale) {
       return 'XXXXXX';
@@ -47,7 +58,7 @@ export class LocalizationProvider extends React.Component {
 
   static defaultProps = {
     debug: false,
-    localize(messages, key, values) {
+    localize(messages, key, values = null) {
       if (values) {
         return format(messages[key], values);
       }
