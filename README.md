@@ -13,29 +13,36 @@ A simple context wrapper and text localization component for localizing strings.
 ### Use it in your React App (with <Text /> helper):
 
 ```js
-import Localization, { Text } from 'react-localize';
+import { LocalizationProvider, LocalizationConsumer } from 'react-localize';
 const localizationBundle = {
   'app.button.Submit': 'Submit',
   foo: {
-    bar: 'Hey %s, you must be %d old?'
+    bar: 'Hey %s, you must be %d years old?'
   }
 };
 
-<Localization messages={localizationBundle}>
+<LocalizationProvider messages={localizationBundle}>
   <AnyParentComponent>
-    <Text message="prop.Val" style={{ color: 'blue' }} />
-    <Text message="app.button.Submit" data-magic="pretty neat" />
-    <Text message="foo.bar" values={['Foophen', 32]} style={{ color: 'red' }} />
+    <LocalizationConsumer>
+      {({ localize }) => {
+        return <div>
+          <h1>{localize('prop.MissingValue')}</h1>
+          <button>{localize('abuttonp.button.Submit')}</button>
+          <p>{localize('foo.bar', ['Stephen', 34])}</p>
+        </div>;
+      }}
+    </LocalizationConsumer>
   </AnyParentComponent>
-</Localization>
+</LocalizationProvider>
 
-// outputs (respectively):
-// <span style="color: blue">prop.Val</span>
-// <span data-magic="pretty neat">Submit</span>
-// <span style="color: red">Hey Foophen, you must be 32 old?</span>
+// outputs:
+// <div>
+// <h1>prop.MissingValue</h1>
+// <button>Submit</button>
+// <p>Hey Stephen, you must be 34 years old?</p>
 ```
 
-### Use it in your React App (with context.localize() method):
+### Use it in your React App Components (via withLocalization() hoc):
 
 ```js
 // app.js
@@ -45,30 +52,35 @@ const localizationBundle = {
 
 // YourComponent.jsx
 import TabsMaybe from 'react-bootstrap-tabs-i-guess';
+import { withLocalization } from 'react-localize';
 
-export default YourComponent = (props, context) => {
+const YourComponent = (props) => {
   const tabsConfig = props.tabsArray.map((tab) => {
     return {
       id: tab.id,
-      message: context.localize(tab.label)
+      message: props.localize(tab.label)
       onClick: () => props.onTabClick(tab.id)
     };
   });
 
   return <TabsMaybe tabs={tabConfig} />
 };
+
+export default withLocalization(YourComponent);
 ```
 
 ## More Info & Usage:
-`<Localization />` exposes a `localize(key, values)` function that is passed through [ReactJS Context](https://facebook.github.io/react/docs/context.html) to all children in the render tree it wraps. It takes a `messages` property that should be formatted like `{ 'mykey.path.to.Value': 'Value' }` or `{ myKey: { path: { to: { Value: 'Value' } } } }`.
+`<LocalizationProvider />` exposes a `localize(key, values)` function that is passed through [ReactJS Context](https://facebook.github.io/react/docs/context.html)
+to all `<LocalizationConsumer />`s in the render tree it wraps. It takes a `messages` property that should be
+formatted like `{ 'mykey.path.to.Value': 'Value' }` or `{ myKey: { path: { to: { Value: 'Value' } } } }`.
 
-The `<Text />` component is just a wrapper intended to help you out when you don't need or want to wire your component up to `contextTypes` and process things yourself. All it's really doing it helping you call `localize(key, values)`. By default it returns a span with all the other props you pass this component. Because this renders a `<span>` it's not always useful, for example when localizing `<input placeholder='something' />`.
 
-### localizationConnector
-This connector behaves similarly to [connect()](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) in that it will take a `context.localize()` function provided by `<Localization/>` and then pass it as a prop to the component you're intending to use.
+### withLocalization
+This connector behaves similarly to [connect()](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) in that it will take a
+`Component` and wrap it inside of a `<LocalizationConsumer/>` and hoist the `localize` method onto the `props` provided to `<Component />`.
 
 ```js
-import { localizationConnector } from 'react-localize';
+import { withLocalization } from 'react-localize';
 
 const MyComponent = props => {
   const {label, localize} = this.props;
@@ -78,42 +90,29 @@ const MyComponent = props => {
   </p>
 };
 
-export default localizationConnector(MyComponent);
+export default withLocalization(MyComponent);
 ```
-
-### LocalizationWrapper
-There's also an HOC wrapper to quickly provide childContextTypes for a given component. Let's redo the first example above using this pattern:
-
-```js
-// app.js
-import { LocalizationWrapper } from 'react-localize';
-import MyApp from './app.js';
-
-const localizationBundle = {
-  'app.button.Submit': 'Submit',
-  foo: {
-    bar: 'Hey %s, you must be %d old?'
-  }
-};
-
-export default LocalizationWrapper(MyApp, localizationBundle)
-```
-
-This is just a convenience HOC for declaring `childContextTypes` for your app, the same way `<Localization><MyApp /></Localization>` does.
-
 
 ## Available Props
 
 ### xLocale
-If you pass `<Localization xLocale={true} />` this short circuits `context.localize()` calls to always return `XXXXXX`. This can be useful for viewing your UI and identifying which parts of the application are not using localization.
+If you pass `<LocalizationProvider xLocale />` this short circuits `localize()` calls to always
+return `XXXXXX`. This can be useful for viewing your UI and identifying which parts of the application
+are not using localization.
 
 ### debug
-Utilizing `<Localization debug={true} />` expands the `<Text />` helper to include an HTML attribute `data-original-message`, which will be set to the `message` prop given. This can be useful in areas like Chrome DevTools where you want to see what key an element is using to localize things without having to swap back to your code.
+Utilizing `<LocalizationProvider debug />` expands the `localize()` function to include a `console.warn`
+messages when a key cannot be found or when key/messages are not provided to the function when invoked.
 
 ### localize
-`context.localize(key, values)` simply tries to look `messageBundle[key]` up using `lodash/get`. It then calls `this.props.localize(message, key, values);` so that the string can be formatted, you can utilize the default formatter function we provide, or you can override this to suit your needs. If the key is not found on your bundle, by default you'll receive the key back.
+Internally we do a few sanity checks before invoking a simple format function (similar to util.format)
+provided by default to return key/value results. You can override this behavior by providing your _own_
+`localize(messages, key, values)` function to `<LocalizationProvider />`. This function will be called
+in place of the default one, and you can do any lookup / formatting that you need not provided by the default.
 
-The default `localize()` format function behaves similar to `printf` formatted strings. You can read more about how that works on [util.format](https://nodejs.org/api/util.html#util_util_format_format) as well. Here's some quick examples:
+The default `localize()` format function behaves similar to `printf` formatted strings. You can read more
+about how that works on [util.format](https://nodejs.org/api/util.html#util_util_format_format) as well.
+Here's some quick examples:
 
 ```js
 util.format('Why hello, %s!', 'Foophen');
@@ -121,12 +120,4 @@ util.format('Why hello, %s!', 'Foophen');
 
 util.format('There are %d things you have to do today', 5)
 // There are 5 things you have to do today
-```
-
-## Testing
-React is in package.json's dev and peer dependencies because React is required for running the tests. You'll need to build before the tests will work as they're run against the built files. We're using Puny to test because tests for react-localize should be simple & fast.
-
-```sh
-npm run build
-npm t
 ```
