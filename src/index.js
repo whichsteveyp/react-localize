@@ -1,7 +1,4 @@
-import Localization from './Localization';
-import localizationConnector from './LocalizationConnector';
-import LocalizationWrapper from './LocalizationWrapper';
-import Text from './Text';
+import { LocalizationProvider, LocalizationConsumer } from './react-localize';
+import withLocalization from './withLocalization';
 
-export default Localization;
-export { Text, LocalizationWrapper, localizationConnector };
+export { LocalizationProvider, LocalizationConsumer, withLocalization };

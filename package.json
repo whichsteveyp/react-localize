@@ -1,18 +1,23 @@
 {
   "name": "react-localize",
-  "version": "3.0.0",
+  "version": "4.0.0-beta.1",
   "description": "A simple context wrapper and text localization component for localizing strings",
-  "main": "build/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
-    "build"
+    "dist",
+    "lib",
+    "es"
   ],
   "scripts": {
-    "build": "gulp build",
-    "githooks": "gulp githooks",
-    "precommit": "npm run test",
-    "prepublish": "in-publish && npm t && npm run build || not-in-publish",
-    "test": "gulp test",
-    "lint": "eslint src/*.jsx"
+    "clean": "yarn rimraf dist lib es",
+    "build": "yarn run clean && yarn run build:cjs && yarn run build:es && yarn run build:umd && yarn run build:umd:min",
+    "build:cjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:umd": "cross-env NODE_ENV=development BABEL_ENV=build rollup -c -i src/index.js -o dist/react-localize.js",
+    "build:umd:min": "cross-env NODE_ENV=production BABEL_ENV=buildProd rollup -c -i src/index.js -o dist/react-localize.min.js",
+    "prepublish": "in-publish && yarn run test && yarn run build || not-in-publish",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,34 +34,39 @@
   "author": "Stephen Rivas Jr",
   "license": "ISC",
   "dependencies": {
-    "in-publish": "2.0.0",
-    "lodash.get": "4.4.2",
-    "util": "0.10.3"
+    "create-react-context": "^0.2.1"
   },
   "peerDependencies": {
-    "prop-types": ">=15",
-    "react": "^0.14.9 || >=15"
+    "prop-types": "15.x",
+    "react": ">=0.14.9"
   },
   "devDependencies": {
-    "babel-preset-latest": "6.24.1",
-    "babel-plugin-add-module-exports": "0.2.1",
-    "babel-plugin-transform-react-jsx": "6.23.0",
-    "babel-preset-stage-2": "6.24.1",
-    "babel-register": "6.24.1",
-    "chai": "3.5.0",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "14.1.0",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.3",
-    "gulp": "git://github.com/gulpjs/gulp.git#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
-    "gulp-babel": "6.1.2",
-    "gulp-mocha": "4.3.0",
-    "gulp-symlink": "2.1.4",
-    "gulp-util": "3.0.8",
-    "mocha": "3.3.0",
-    "prop-types": ">=15",
-    "react": "^0.14.9 || >=15",
-    "react-dom": "^0.14.9 || >=15"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.1.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "in-publish": "2.0.0",
+    "jest": "^22.4.3",
+    "prop-types": "15.5",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-testing-library": "^3.1.0",
+    "rollup": "^0.45.1",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^1.2.1",
+    "rollup-plugin-uglify": "^2.0.1"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }

@@ -7,6 +7,21 @@ make it easier to update and read.
 ## [Unreleased]
 _(add items here to be added to future release)_
 
+## 4.0.0-beta.1
+### Added
+- Support for older react versions via `create-react-context`
+
+### Changed
+- Basically everything. Aligned with `react-access` from a deps/structure/tooling standpoint
+- The entire API is updated, while conceptually the same its now more
+in line with the latest React Context functionality
+- Documentation matches up more with the new API. Which is _probably_ for the best?
+
+### Removed
+- the `<Text/>` component is no longer in the API at all, and we will plan to add documentation
+on how you can build a simple one yourself using `withLocalization()`.
+
+
 ## 3.0.0, 3.0.0-beta 2017-04-26
 ### Added
 - Support for React 15.5 💯
