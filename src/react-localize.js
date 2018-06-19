@@ -14,14 +14,23 @@ const Localize = createReactContext({
 export class LocalizationProvider extends React.Component {
   render() {
     const { _localize: localize } = this;
+    const { xLocale, debug } = this.props;
 
-    return <Localize.Provider value={{ localize }}>
+    return <Localize.Provider value={{ localize, xLocale, debug }}>
       {this.props.children}
     </Localize.Provider>;
   }
 
   _localize = (key, values) => {
     const { localize, xLocale, messages, debug } = this.props;
+    const isLocalizeProvided = localize !== LocalizationProvider.defaultProps.localize;
+
+    if (isLocalizeProvided) {
+      // doing sanity checks against the inputs, lookup, debug, xLocale are only
+      // supported for the default behavior, when users provide their own override
+      // method we can defer that to them
+      return localize(messages, key, values, xLocale, debug);
+    }
 
     if (!messages || !key) {
       if (debug) console.warn('Unable to localize missing messages or key in arguments.');
