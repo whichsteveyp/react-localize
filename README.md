@@ -11,7 +11,9 @@ for localizing strings.
     <img src="http://img.shields.io/travis/sprjr/react-localize.svg?style=flat" alt="React Localize Travis Builds" />
   </a>
 
-  [![Greenkeeper badge](https://badges.greenkeeper.io/sprjr/react-localize.svg)](https://greenkeeper.io/)
+  <a href="https://greenkeeper.io/">
+    <img src="https://badges.greenkeeper.io/sprjr/react-localize.svg" alt="React Localize Greenkeeper Status" />
+  </a>
 </p>
 
 ## Getting Started, Quickly:
