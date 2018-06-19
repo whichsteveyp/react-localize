@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
+  - 8
 sudo: false
 matrix:
   include:
@@ -14,3 +14,8 @@ cache: yarn
 install:
   - yarn
   - yarn add react@$REACT_VERSION react-dom@$REACT_VERSION
+notifications:
+  email: false
+after_success:
+  # Upload to coveralls, but don't _fail_ if coveralls is down.
+  - cat coverage/lcov.info | node_modules/.bin/coveralls || echo "Coveralls upload failed"
