@@ -3,9 +3,11 @@ import { LocalizationConsumer } from '.';
 
 export default (Component) => {
   const withLocalization = (props) => <LocalizationConsumer>
-    {({ localize }) => <Component
+    {({ localize, xLocale, debug }) => <Component
       {...props}
       localize={localize}
+      xLocale={xLocale}
+      debug={debug}
     />}
   </LocalizationConsumer>;
 
