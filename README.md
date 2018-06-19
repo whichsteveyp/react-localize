@@ -42,7 +42,7 @@ const localizationBundle = {
       {({ localize }) => {
         return <div>
           <h1>{localize('prop.MissingValue')}</h1>
-          <button>{localize('abuttonp.button.Submit')}</button>
+          <button>{localize('app.button.Submit')}</button>
           <p>{localize('foo.bar', ['Stephen', 34])}</p>
         </div>;
       }}
