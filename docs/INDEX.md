@@ -6,4 +6,7 @@
   * [LocalizationProvider](api/provider.md)
   * [LocalizationConsumer](api/consumer.md)
   * [withLocalization()](api/with-localization.md)
-* [Examples & Guides](examples-and-guides.md)
+* [Guides](guides/index.md)
+  * [Localizing](guides/localizing.md)
+  * [Message Bundles](guides/message-bundles.md)
+* [Examples](INDEX.md)
