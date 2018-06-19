@@ -25,11 +25,19 @@ export class LocalizationProvider extends React.Component {
     const { localize, xLocale, messages, debug } = this.props;
     const isLocalizeProvided = localize !== LocalizationProvider.defaultProps.localize;
 
+    let localizeFn = localize;
+    if (typeof localize !== 'function') {
+      localizeFn = (messages, key) => {
+        if (debug) console.warn(`Unable to localize ${key}, not connected to react-localize`);
+        return key;
+      };
+    }
+
     if (isLocalizeProvided) {
       // doing sanity checks against the inputs, lookup, debug, xLocale are only
       // supported for the default behavior, when users provide their own override
       // method we can defer that to them
-      return localize(messages, key, values, xLocale, debug);
+      return localizeFn(messages, key, values, xLocale, debug);
     }
 
     if (!messages || !key) {
@@ -45,14 +53,6 @@ export class LocalizationProvider extends React.Component {
 
     if (xLocale) {
       return 'XXXXXX';
-    }
-
-    let localizeFn = localize;
-    if (typeof localize !== 'function') {
-      localizeFn = (messages, key) => {
-        if (debug) console.warn(`Unable to localize ${key}, not connected to react-localize`);
-        return key;
-      };
     }
 
     return localizeFn(messages, key, values);
