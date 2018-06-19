@@ -44,7 +44,8 @@ test('calls a provided props.localize function with expected values', () => {
   render(<LocalizationProvider xLocale={xLocale} debug={debug} messages={messages} localize={customLocalize}>
     <LocalizationConsumer>
       {({ localize }) => {
-        return localize(key, values);
+        localize(key, values);
+        return null;
       }}
     </LocalizationConsumer>
   </LocalizationProvider>);
