@@ -7,6 +7,13 @@ make it easier to update and read.
 ## [Unreleased]
 _(add items here to be added to future release)_
 
+## 2018-06-19 4.0.0-beta.2
+### Added
+- More documentation (migration guide, `<Text/>` replacement guide)
+- Made a few fixes to the `_localize` internal function flow, although
+the order of operations here may need to change again if there's feedback
+around the current way we invoke / don't invoke `props.localize`.
+
 ## 4.0.0-beta.1
 ### Added
 - Support for older react versions via `create-react-context`
