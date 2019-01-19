@@ -60,7 +60,7 @@
     "react-dom": "^16.3.0",
     "react-testing-library": "^4.0.0",
     "rollup": "^0.45.1",
-    "rollup-plugin-babel": "^3.0.5",
+    "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-replace": "^1.2.1",
