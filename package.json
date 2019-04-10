@@ -59,7 +59,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-testing-library": "^4.0.0",
-    "rollup": "^0.45.1",
+    "rollup": "^1.9.3",
     "rollup-plugin-babel": "^3.0.5",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
