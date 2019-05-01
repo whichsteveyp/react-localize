@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { render } from 'react-testing-library';
 import 'jest-dom/extend-expect';
-import { LocalizationConsumer, LocalizationProvider, withLocalization } from './index';
+import { LocalizationConsumer, LocalizationProvider, withLocalization, useLocalize } from './index';
 
 const messages = {
   foo: 'bar',
@@ -116,4 +116,27 @@ test('does not explode when provided props.localize is not a function', () => {
 
   expect(queryByText('foo')).toBeTruthy();
   expect(console.warn).toBeCalledWith('Unable to localize foo, not connected to react-localize');
+});
+
+test('useLocalize hook', () => {
+  // runs the test just if useContext is available otherwise expects a console.warn
+  if (!useContext) {
+    expect(console.warn).toBeCalledWith('This feature is only available in React >= 16.8');
+    return;
+  }
+
+  const HookTester = ({hook, handleResult}) => {
+    return handleResult(hook());
+  }
+
+  const { queryByText } = render(<LocalizationProvider messages={messages} localize={null} debug>
+    <HookTester
+      hook={useLocalize}
+      handleResult={result => {
+        const { localize } = result;
+        return <span>{localize('foo')}</span>;
+      }}
+    />
+  </LocalizationProvider>);
+  expect(queryByText('bar')).not.toBeNull();
 });
