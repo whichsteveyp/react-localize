@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import createReactContext from 'create-react-context';
 import format from './util.format';
@@ -10,6 +10,15 @@ const Localize = createReactContext({
   debug: true,
   xLocale: false,
 });
+
+export const useLocalize = () => { 
+  if (!useContext) {
+    console.warn('This feature is only available in React >= 16.8')
+    return {};
+  }
+  
+  return useContext(Localize);
+};
 
 export class LocalizationProvider extends React.Component {
   render() {

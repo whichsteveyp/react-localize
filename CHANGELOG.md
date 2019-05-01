@@ -7,6 +7,10 @@ make it easier to update and read.
 ## [Unreleased]
 _(add items here to be added to future release)_
 
+## 2019-05-01 5.0.0
+### Added
+- Added `useLocalize` hook.
+
 ## 2018-06-19 4.0.0-beta.2
 ### Added
 - More documentation (migration guide, `<Text/>` replacement guide)
