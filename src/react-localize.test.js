@@ -119,12 +119,6 @@ test('does not explode when provided props.localize is not a function', () => {
 });
 
 test('useLocalize hook', () => {
-  // runs the test just if useContext is available otherwise expects a console.warn
-  if (!useContext) {
-    expect(console.warn).toBeCalledWith('This feature is only available in React >= 16.8');
-    return;
-  }
-
   const HookTester = ({hook, handleResult}) => {
     return handleResult(hook());
   }
@@ -133,10 +127,17 @@ test('useLocalize hook', () => {
     <HookTester
       hook={useLocalize}
       handleResult={result => {
-        const { localize } = result;
+        const { localize = () => {} } = result;
         return <span>{localize('foo')}</span>;
       }}
     />
   </LocalizationProvider>);
-  expect(queryByText('bar')).not.toBeNull();
+
+  // expects the localized text if useContext is available otherwise expects a console.warn
+  if (!useContext) {
+    expect(console.warn).toBeCalledWith('This feature is only available in React >= 16.8');
+    return;
+  } else {
+    expect(queryByText('bar')).not.toBeNull();
+  }
 });
