@@ -34,7 +34,7 @@
   "author": "Stephen Rivas Jr",
   "license": "ISC",
   "dependencies": {
-    "create-react-context": "^0.2.1"
+    "create-react-context": "^0.3.0"
   },
   "peerDependencies": {
     "prop-types": "15.x",
