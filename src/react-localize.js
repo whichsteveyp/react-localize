@@ -55,7 +55,7 @@ export class LocalizationProvider extends React.Component {
     }
 
     const lookup = messages[key];
-    if (!lookup) {
+    if (!lookup && typeof lookup !== 'string') {
       if (debug) console.warn(`Unable to localize missing messages or key in arguments for ${key}`);
       return key;
     }
