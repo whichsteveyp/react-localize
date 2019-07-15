@@ -7,6 +7,10 @@ make it easier to update and read.
 ## [Unreleased]
 _(add items here to be added to future release)_
 
+## 2019-07-15 5.0.1
+### Changed
+- Provide ability to use empty string as translation
+
 ## 2019-05-01 5.0.0
 ### Added
 - Added `useLocalize` hook.

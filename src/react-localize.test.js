@@ -4,6 +4,7 @@ import 'jest-dom/extend-expect';
 import { LocalizationConsumer, LocalizationProvider, withLocalization, useLocalize } from './index';
 
 const messages = {
+  emptyString: '',
   foo: 'bar',
   fooValues: 'a baz %s',
 };
@@ -24,6 +25,8 @@ test('provides a localize function that can be used to retrieve messages in a bu
         return <div>
           <span>{localize('foo')}</span>
           <span>{localize('fooValues', ['bat'])}</span>
+          <span>{localize('emptyString')}</span>
+          <span>{localize('unexistingKey')}</span>
         </div>;
       }}
     </LocalizationConsumer>
@@ -31,6 +34,8 @@ test('provides a localize function that can be used to retrieve messages in a bu
 
   expect(queryByText('bar')).not.toBeNull();
   expect(queryByText('a baz bat')).not.toBeNull();
+  expect(queryByText('unexistingKey')).not.toBeNull();
+  expect(queryByText('emptyString')).toBeNull();
 });
 
 test('calls a provided props.localize function with expected values', () => {
