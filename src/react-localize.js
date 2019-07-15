@@ -5,7 +5,7 @@ import format from './util.format';
 
 // by default we want our consumers to just safely return the key provided
 // to it, rather than exploding if not wrapped in a provider properly
-const Localize = createReactContext({
+export const Localize = createReactContext({
   localize: key => key,
   debug: true,
   xLocale: false,
