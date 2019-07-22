@@ -7,6 +7,11 @@ make it easier to update and read.
 ## [Unreleased]
 _(add items here to be added to future release)_
 
+## 2019-07-15 5.1.0
+### Added
+- `LocalizationContext` is exposed for being used in classes with context api
+- documentation on `withLocalization` and `LocalizationContext`
+
 ## 2019-07-15 5.0.1
 ### Changed
 - Provide ability to use empty string as translation

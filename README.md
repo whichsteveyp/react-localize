@@ -16,6 +16,11 @@ for localizing strings.
   </a>
 </p>
 
+## Documentation:
+
+Please refer to our [gitbook documentation](https://reactlocalize.gitbook.io/docs/)
+for more detailed information & resources.
+
 ## Getting Started, Quickly:
 
 ### Install it from [npm, Inc.*](http://www.npmjs.org):
@@ -23,7 +28,7 @@ for localizing strings.
 
 _*or via `yarn add react-localize`_
 
-### Wire It Up to Your App:
+### Example of usage:
 
 ```js
 import { LocalizationProvider, LocalizationConsumer } from 'react-localize';
@@ -57,6 +62,3 @@ const localizationBundle = {
 //   <p>Hey Stephen, you must be 34 years old?</p>
 // </div>
 ```
-
-Please refer to our [gitbook documentation](https://reactlocalize.gitbook.io/docs/)
-for more detailed information & resources.
