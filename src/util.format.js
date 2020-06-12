@@ -8,6 +8,8 @@ function format(fmt) {
   var re = /(%?)(%([jds]))/g
     , args = Array.prototype.slice.call(arguments, 1);
   if(args.length) {
+    if(Array.isArray(args[0]))
+        args = args[0];
     fmt = fmt.replace(re, function(match, escaped, ptn, flag) {
       var arg = args.shift();
       switch(flag) {
