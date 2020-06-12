@@ -3,16 +3,16 @@ A simple React Context wrapper and text localization component
 for localizing strings.
 
 <p align="center">
-  <a href='https://coveralls.io/github/sprjr/react-localize?branch=master'>
-    <img src='https://coveralls.io/repos/github/sprjr/react-localize/badge.svg?branch=master' alt='React Localize Coverage Status' />
+  <a href='https://coveralls.io/github/stevey-p/react-localize?branch=master'>
+    <img src='https://coveralls.io/repos/github/stevey-p/react-localize/badge.svg?branch=master' alt='React Localize Coverage Status' />
   </a>
 
-  <a href="https://travis-ci.org/sprjr/react-localize">
-    <img src="http://img.shields.io/travis/sprjr/react-localize.svg?style=flat" alt="React Localize Travis Builds" />
+  <a href="https://travis-ci.org/stevey-p/react-localize">
+    <img src="http://img.shields.io/travis/stevey-p/react-localize.svg?style=flat" alt="React Localize Travis Builds" />
   </a>
 
   <a href="https://greenkeeper.io/">
-    <img src="https://badges.greenkeeper.io/sprjr/react-localize.svg" alt="React Localize Greenkeeper Status" />
+    <img src="https://badges.greenkeeper.io/stevey-p/react-localize.svg" alt="React Localize Greenkeeper Status" />
   </a>
 </p>
 

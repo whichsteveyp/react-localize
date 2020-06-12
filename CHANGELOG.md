@@ -92,7 +92,7 @@ context.
 - Repo files (.gitignore, README.md)
 
 ### Fixed
-- Bug causing `[]` to show at end of messages using `<Text />` introduced [here](https://github.com/sprjr/react-localize/blob/fde285cb2392194db7712a619f040b0c21daecaf/src/Localization.jsx#L35).
+- Bug causing `[]` to show at end of messages using `<Text />` introduced [here](https://github.com/stevey-p/react-localize/blob/fde285cb2392194db7712a619f040b0c21daecaf/src/Localization.jsx#L35).
 
 ## 1.0.0
 Intial release of `<Localization />` wrapper and `<Text />` helper components for looking up keys in
