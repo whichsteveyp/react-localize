@@ -2,7 +2,7 @@ Throughout the project evolution we have not put together a migration guide
 for the changes leading up to `4.0.0`, and relied mostly on our `CHANGELOG`.
 Since this API change is the most significant, we put together this guide to
 help you ensure the best possible migration. If you're still having issues,
-[ask for help!](https://github.com/sprjr/react-localize/issues/new).
+[ask for help!](https://github.com/stevey-p/react-localize/issues/new).
 
 ### Migrating the Provider
 Previously, our context wrapper was exported like so:
