@@ -50,7 +50,6 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
     "babel-jest": "^23.4.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
     "coveralls": "3.1.0",
