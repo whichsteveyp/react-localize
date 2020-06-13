@@ -1,4 +1,4 @@
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 import format from './util.format';
 
 test('formats a string properly when no values are provided', () => {
