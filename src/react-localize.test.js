@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import { LocalizationConsumer, LocalizationProvider, withLocalization, useLocalize } from './index';
 
 const messages = {

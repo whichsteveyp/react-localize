@@ -1,22 +1,15 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
 import replace from 'rollup-plugin-replace';
 
 var env = process.env.NODE_ENV;
 var config = {
-  format: 'umd',
-  moduleName: 'ReactLocalize',
-  external: ['react', 'prop-types'],
-  globals: {
-    react: 'React',
-    'prop-types': 'PropTypes',
-  },
-  context: 'this',
+  input: 'src/index.js',
   plugins: [
     nodeResolve({
-      jsnext: true
+      mainFields: ['jsnext:main', 'main', 'module'],
     }),
     commonjs({
       include: 'node_modules/**'
@@ -31,7 +24,17 @@ var config = {
     replace({
       'process.env.NODE_ENV': JSON.stringify(env)
     })
-  ]
+  ],
+  external: ['react', 'prop-types'],
+  output: {
+    format: 'umd',
+    name: 'ReactLocalize',
+    globals: {
+      react: 'React',
+      'prop-types': 'PropTypes',
+    },
+  },
+  context: 'this',
 };
 
 if (env === 'production') {
@@ -41,7 +44,6 @@ if (env === 'production') {
         pure_getters: true,
         unsafe: true,
         unsafe_comps: true,
-        warnings: false
       }
     })
   );

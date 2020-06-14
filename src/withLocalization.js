@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocalizationConsumer } from '.';
+import { LocalizationConsumer } from './react-localize';
 
 export default (Component) => {
   const withLocalization = (props) => <LocalizationConsumer>
